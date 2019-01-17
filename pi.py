@@ -7,8 +7,8 @@ import matplotlib.animation as animation
 #2 right body
 #y coordinate doesnt change and its 0
 
-dt = 0.000001; #time step
-m = [1,100000000] #masses left body, right body 
+dt = 0.0001; #time step
+m = [1,100] #masses left body, right body 
 v1=0 #velocity 
 v2=-1 
 x1=1 #position 
@@ -39,14 +39,14 @@ while(1): #simulation
 	
 print(brs)
 
-mult = 1000 #how much faster do you want to see your simulation in animation
+mult = 100 #how much faster do you want to see your simulation in animation
 
 def update_plot(i, fig, scat):
 	bonus=0
 	if(i>int(len(x1)/mult)-2): #added this because animation will stop and legend wont update for last collision
 		bonus=1		
 	k=mult*i #row index multiplied by mult so you dont watch every index as frame (because its slow)
-	lx1= [x1[k],x2[k]] #plotting more dots /x coordinates
+	lx1= [x1[k],x2[k]+0.03] #plotting more dots /x coordinates
 	lx2= [0,0] # /y coordinates
 	scat.set_data(lx1,lx2) 
 	txt.set_text('x1= %.3f   m1=%.0f\nx2= %.3f   m1=%.0f\nCollisions=%.0f\n t=%.3fs' %(x1[k],m[0], x2[k],m[1],bb[k]+bonus,(k*dt))) #update of legend
@@ -57,7 +57,7 @@ ax = fig.add_subplot(111)
 ax.set_xlim([-0.1, 3]) #animation scale
 ax.set_ylim([-0.1,3])
 txt = ax.text(0.05, 0.8, '', transform=ax.transAxes) #legend position
-scat, = ax.plot([], [], 'o', lw=2) #plot type (o=dots)
+scat, = ax.plot([], [], 's', c='b') #plot type (s=square)
 
 anim = animation.FuncAnimation(fig, update_plot, fargs = (fig, scat),
                                frames = int(len(x1)/mult), interval = 1, repeat=False)
