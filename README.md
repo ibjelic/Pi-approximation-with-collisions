@@ -16,5 +16,5 @@ If dt is too high, in simulation x coordinate will go negative because step for 
 
 Explanation here:
 https://www.youtube.com/watch?v=HEfHFsfGXjs
-
+https://www.youtube.com/watch?v=jsYwFizhncE
 
